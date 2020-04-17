@@ -12,6 +12,8 @@ class FirstViewController: UIViewController {
 
     @IBOutlet weak var imageFromInternet: UIImageView!
     @IBAction func loadImageFromInternetButton(_ sender: UIButton) {
+        let url = URL(string: "https://picsum.photos/400/300")
+        imageFromInternet.load(url: url!)
     }
 
     
