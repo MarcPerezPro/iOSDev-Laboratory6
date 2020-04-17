@@ -10,6 +10,15 @@ import UIKit
 
 class FirstViewController: UIViewController {
 
+    @IBOutlet weak var imageFromInternet: UIImageView!
+    @IBAction func loadImageFromInternetButton(_ sender: UIButton) {
+    }
+
+    
+    @IBOutlet weak var imageFromGallery: UIImageView!
+    @IBAction func loadImageFromGalleryButton(_ sender: UIButton) {
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
