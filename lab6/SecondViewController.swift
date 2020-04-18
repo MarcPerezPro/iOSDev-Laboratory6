@@ -34,6 +34,10 @@ class SecondViewController: UIViewController {
             return
         }
         let coordinates = CLLocationCoordinate2D(latitude: lat, longitude: lng)
+        if (!CLLocationCoordinate2DIsValid(coordinates)) {
+            showAlert(ALERT_INVALID_COORDINATES)
+            return
+        }
         let span = MKCoordinateSpan(latitudeDelta: 0.075, longitudeDelta: 0.075)
         let region = MKCoordinateRegion(center: coordinates, span: span)
             
