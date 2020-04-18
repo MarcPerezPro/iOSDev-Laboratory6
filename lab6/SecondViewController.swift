@@ -14,7 +14,30 @@ class SecondViewController: UIViewController {
     
     @IBOutlet weak var latitudeInput: UITextField!
     @IBOutlet weak var longitudeInput: UITextField!
+    
+    let ALERT_INVALID_COORDINATES = "You must provide valid coordinates to go!"
+
+    func showAlert(_ message: String) {
+        let alertController = UIAlertController(title: "ERROR", message:
+            message, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .default))
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
     @IBAction func onGoToTapped(_ sender: UIButton) {
+        guard let lat = CLLocationDegrees(latitudeInput.text!) else {
+            showAlert(ALERT_INVALID_COORDINATES)
+            return
+        }
+        guard let lng = CLLocationDegrees(longitudeInput.text!) else {
+            showAlert(ALERT_INVALID_COORDINATES)
+            return
+        }
+        let coordinates = CLLocationCoordinate2D(latitude: lat, longitude: lng)
+        let span = MKCoordinateSpan(latitudeDelta: 0.075, longitudeDelta: 0.075)
+        let region = MKCoordinateRegion(center: coordinates, span: span)
+            
+        self.mapView.setRegion(region, animated: true)
     }
     
     @IBOutlet weak var destinationLatitudeInput: UITextField!
@@ -28,33 +51,6 @@ class SecondViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-
-//    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-//
-//        let geocoder = CLGeocoder()
-//        geocoder.geocodeAddressString(searchBarMap.text!) { (placemarks:[CLPlacemark]?, error:Error?) in
-//            if error == nil {
-//
-//                let placemark = placemarks?.first
-//
-//                let anno = MKPointAnnotation()
-//                anno.coordinate = (placemark?.location?.coordinate)!
-//                anno.title = self.searchBarMap.text!
-//
-//                let span = MKCoordinateSpanMake(0.075, 0.075)
-//                let region = MKCoordinateRegion(center: anno.coordinate, span: span)
-//
-//                self.mapView.setRegion(region, animated: true)
-//                self.mapView.addAnnotation(anno)
-//                self.mapView.selectAnnotation(anno, animated: true)
-//
-//
-//
-//            }else{
-//                print(error?.localizedDescription ?? "error")
-//            }
-//        }
-//    }
     
 }
 
