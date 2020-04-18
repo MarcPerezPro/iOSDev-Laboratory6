@@ -40,7 +40,7 @@ class SecondViewController: UIViewController {
         }
         let span = MKCoordinateSpan(latitudeDelta: 0.075, longitudeDelta: 0.075)
         let region = MKCoordinateRegion(center: coordinates, span: span)
-            
+
         self.mapView.setRegion(region, animated: true)
     }
     
